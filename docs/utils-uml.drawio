@@ -1,0 +1,71 @@
+<mxfile host="Electron" modified="2024-01-21T01:56:39.721Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="hi5pLg2YjDzliWFBubon" version="21.1.2" type="device">
+  <diagram name="Json-and-Fmt" id="6ZBA9XUlx-laJzU7txON">
+    <mxGraphModel dx="2474" dy="805" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-2" value="The only thing client should implement&lt;br&gt;see examples in file:&lt;br&gt;utils\include\utils\JsonFormatter.h" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="450" y="420" width="250" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-3" value="&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;template &amp;lt;&amp;gt;&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;struct fmt::formatter&amp;lt;nlohmann::json&amp;gt;&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aS4h2zil9dQ8FXHDszH4-6" target="aS4h2zil9dQ8FXHDszH4-9">
+          <mxGeometry x="0.0348" y="-20" relative="1" as="geometry">
+            <mxPoint x="110" y="550" as="sourcePoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-4" value="NLOHMANN_DEFINE_TYPE_INTRUSIVE" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="aS4h2zil9dQ8FXHDszH4-6" target="aS4h2zil9dQ8FXHDszH4-13">
+          <mxGeometry x="0.1117" y="10" relative="1" as="geometry">
+            <mxPoint x="670" y="660" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="430" y="640" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-5" value="enums via magic_enum" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;startArrow=classic;startFill=1;endArrow=classic;" edge="1" parent="1" source="aS4h2zil9dQ8FXHDszH4-14" target="aS4h2zil9dQ8FXHDszH4-6">
+          <mxGeometry x="-0.3388" y="-10" relative="1" as="geometry">
+            <mxPoint x="768.4210526315787" y="700" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="390" y="790" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-6" value="Json" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="280" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-7" value="thirdparty class" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="760" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="aS4h2zil9dQ8FXHDszH4-9" target="aS4h2zil9dQ8FXHDszH4-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-9" value="fmt::format" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-10" value="adl_serializer:&amp;nbsp;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;to_json /&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;from_json&lt;/span&gt;" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="aS4h2zil9dQ8FXHDszH4-6" target="aS4h2zil9dQ8FXHDszH4-7">
+          <mxGeometry x="0.0383" y="10" relative="1" as="geometry">
+            <mxPoint x="420" y="550" as="sourcePoint" />
+            <mxPoint x="480" y="550" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="430" y="490" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aS4h2zil9dQ8FXHDszH4-12" target="aS4h2zil9dQ8FXHDszH4-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-12" value="std::string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="110" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-13" value="own class" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="760" y="610" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-14" value="enums" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="760" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
