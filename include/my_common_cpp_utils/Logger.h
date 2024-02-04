@@ -1,9 +1,9 @@
 #pragma once
 #include "JsonFormatter.h"
-#include <spdlog/spdlog.h>
+#include <memory>
 #include <spdlog/sinks/daily_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
-#include <memory>
+#include <spdlog/spdlog.h>
 #include <type_traits>
 
 namespace utils
@@ -28,13 +28,13 @@ public:
     }
 };
 
-#define MY_LOG( severity, message ) Logger::getInstance()->severity( message )
+} // namespace utils
+
+#define MY_LOG( severity, message ) utils::Logger::getInstance()->severity( message )
 
 #define MY_LOG_FMT( severity, fmt_string, ... ) \
-    Logger::getInstance()->severity( fmt::format( fmt_string, __VA_ARGS__ ) )
+    utils::Logger::getInstance()->severity( fmt::format( fmt_string, __VA_ARGS__ ) )
 
 #define MY_LOG_VAR( severity, var ) MY_LOG_FMT( severity, "{} = {}", #var, ( var ) )
 
 #define MY_FMT( fmt_string, ... ) fmt::format( fmt_string, __VA_ARGS__ )
-
-} // namespace utils
