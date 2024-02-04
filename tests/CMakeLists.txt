@@ -5,14 +5,14 @@ project(my_common_cpp_utils_tests)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(my_common_cpp_utils_tests 
+add_executable(my_common_cpp_utils_tests
     config_tests.cpp
     math_tests.cpp
     json_formatter_tests.cpp
 )
 
-target_include_directories(my_common_cpp_utils_tests 
-    PRIVATE 
+target_include_directories(my_common_cpp_utils_tests
+    PRIVATE
     ${gtest_SOURCE_DIR}/include
     ${gmock_SOURCE_DIR}/include
 )
