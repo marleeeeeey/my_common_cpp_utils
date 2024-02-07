@@ -24,4 +24,6 @@ target_link_libraries(my_common_cpp_utils
     glm
 )
 
-add_subdirectory(tests)
+if(TARGET GTest::gtest)
+    add_subdirectory(tests)
+endif()
