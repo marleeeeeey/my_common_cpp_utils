@@ -12,7 +12,8 @@ namespace utils
 class Logger
 {
 public:
-    static std::shared_ptr<spdlog::logger>& getInstance()
+    static std::shared_ptr<spdlog::logger>& getInstance(
+        spdlog::level::level_enum level = spdlog::level::level_enum::info)
     {
         static std::shared_ptr<spdlog::logger> combined_logger;
 
@@ -22,6 +23,7 @@ public:
             sinks.push_back(std::make_shared<spdlog::sinks::stderr_color_sink_mt>());
             sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_mt>("game.log", 23, 59));
             combined_logger = std::make_shared<spdlog::logger>("game", begin(sinks), end(sinks));
+            combined_logger->set_level(level);
         }
 
         return combined_logger;
