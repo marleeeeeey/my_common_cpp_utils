@@ -13,9 +13,10 @@ bool isEqual(T lhs, T rhs, T eps = 0.0001f)
     return std::fabs(lhs - rhs) < eps;
 }
 
-inline bool randomBool()
+inline bool randomTrue(float probabilityOfTrue = 0.5f)
 {
-    return glm::linearRand(0, 1) == 1;
+    float randomValue = glm::linearRand(0.0f, 1.0f);
+    return randomValue <= probabilityOfTrue;
 }
 
 // Returns 1 if val > 0, -1 if val < 0, and 0 if val == 0.
