@@ -19,6 +19,12 @@ inline bool randomTrue(float probabilityOfTrue = 0.5f)
     return randomValue <= probabilityOfTrue;
 }
 
+template <typename T>
+T random(T min, T max)
+{
+    return glm::linearRand(min, max);
+}
+
 // Returns 1 if val > 0, -1 if val < 0, and 0 if val == 0.
 template <typename T>
 T sign(T val)
