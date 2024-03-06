@@ -17,16 +17,16 @@ public:
     JsonLoader(const JsonLoader&) = delete;
     JsonLoader& operator=(const JsonLoader&) = delete;
 
-    nlohmann::json& root() { return root_; }
-    const nlohmann::json& root() const { return root_; }
+    nlohmann::json& Root() { return root_; }
+    const nlohmann::json& Root() const { return root_; }
 
-    void loadFromString(const std::string& jsonString);
-    void loadFromFile(const std::filesystem::path& jsonFilePath);
+    void LoadFromString(const std::string& jsonString);
+    void LoadFromFile(const std::filesystem::path& jsonFilePath);
 
-    void saveToSameFile() const;
-    void saveToFile(const std::string& filename) const;
+    void SaveToSameFile() const;
+    void SaveToFile(const std::string& filename) const;
 
-    bool isLoaded() const { return isLoaded_; }
+    bool IsLoaded() const { return isLoaded_; }
 };
 
 } // namespace utils

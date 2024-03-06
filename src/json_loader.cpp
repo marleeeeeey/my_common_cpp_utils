@@ -6,7 +6,7 @@
 namespace utils
 {
 
-void JsonLoader::loadFromFile(const std::filesystem::path& jsonFilePath)
+void JsonLoader::LoadFromFile(const std::filesystem::path& jsonFilePath)
 {
     if (isLoaded_)
         throw std::runtime_error("JSON data is already loaded. Use saveToSameFile() to save changes");
@@ -40,15 +40,15 @@ void JsonLoader::loadFromFile(const std::filesystem::path& jsonFilePath)
     }
 }
 
-void JsonLoader::saveToSameFile() const
+void JsonLoader::SaveToSameFile() const
 {
     if (!lastFilename_.has_value())
         throw std::logic_error("No filename specified for saving JSON");
 
-    return saveToFile(lastFilename_.value());
+    return SaveToFile(lastFilename_.value());
 }
 
-void JsonLoader::saveToFile(const std::string& filename) const
+void JsonLoader::SaveToFile(const std::string& filename) const
 {
     std::ofstream output_file(filename);
     if (!output_file.is_open())
@@ -60,7 +60,7 @@ void JsonLoader::saveToFile(const std::string& filename) const
     MY_LOG_FMT(info, "JSON data has been written to {}", filename);
 }
 
-void JsonLoader::loadFromString(const std::string& jsonString)
+void JsonLoader::LoadFromString(const std::string& jsonString)
 {
     try
     {

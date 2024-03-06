@@ -7,34 +7,34 @@ namespace utils
 
 namespace
 {
-JsonLoader& getSingletoneInstance()
+JsonLoader& GetSingletoneInstance()
 {
     static JsonLoader jsonLoader;
     return jsonLoader;
 }
 } // namespace
 
-void Config::initInstanceFromString(std::string& jsonSourceAsString)
+void Config::InitInstanceFromString(std::string& jsonSourceAsString)
 {
-    getSingletoneInstance().loadFromString(jsonSourceAsString);
+    GetSingletoneInstance().LoadFromString(jsonSourceAsString);
 };
 
-void Config::initInstanceFromFile(std::filesystem::path& jsonFilePath)
+void Config::InitInstanceFromFile(std::filesystem::path& jsonFilePath)
 {
-    getSingletoneInstance().loadFromFile(jsonFilePath);
+    GetSingletoneInstance().LoadFromFile(jsonFilePath);
 };
 
-nlohmann::json& Config::getInstance()
+nlohmann::json& Config::GetInstance()
 {
-    JsonLoader& jsonLoader = getSingletoneInstance();
-    if (!jsonLoader.isLoaded())
+    JsonLoader& jsonLoader = GetSingletoneInstance();
+    if (!jsonLoader.IsLoaded())
         throw std::runtime_error("Config is not initialized. Use initInstanceFromFile() or initInstanceFromString()");
 
-    return jsonLoader.root();
+    return jsonLoader.Root();
 };
 
-void Config::save()
+void Config::Save()
 {
-    getSingletoneInstance().saveToSameFile();
+    GetSingletoneInstance().SaveToSameFile();
 };
 } // namespace utils

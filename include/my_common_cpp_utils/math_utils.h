@@ -9,26 +9,26 @@ namespace utils
 {
 
 template <typename T>
-bool isEqual(T lhs, T rhs, T eps = 0.0001f)
+bool IsEqual(T lhs, T rhs, T eps = 0.0001f)
 {
     return std::fabs(lhs - rhs) < eps;
 }
 
-inline bool randomTrue(float probabilityOfTrue = 0.5f)
+inline bool RandomTrue(float probabilityOfTrue = 0.5f)
 {
     float randomValue = glm::linearRand(0.0f, 1.0f);
     return randomValue <= probabilityOfTrue;
 }
 
 template <typename T>
-T random(T min, T max)
+T Random(T min, T max)
 {
     return glm::linearRand(min, max);
 }
 
 // Returns 1 if val > 0, -1 if val < 0, and 0 if val == 0.
 template <typename T>
-T sign(T val)
+T Sign(T val)
 {
     return (T(0) < val) - (val < T(0));
 }
@@ -36,13 +36,13 @@ T sign(T val)
 #ifdef SFML_AVAILABLE
 
 template <typename T>
-T getArea(const sf::Vector2<T>& size)
+T GetArea(const sf::Vector2<T>& size)
 {
     return size.x * size.y;
 }
 
 template <typename T>
-sf::Vector2<T> normalize(const sf::Vector2<T>& v)
+sf::Vector2<T> Normalize(const sf::Vector2<T>& v)
 {
     float length = std::sqrt(v.x * v.x + v.y * v.y);
     if (length != 0)
@@ -54,7 +54,7 @@ sf::Vector2<T> normalize(const sf::Vector2<T>& v)
 
 // value = 85, step = 10 => 80
 template <typename T>
-T roundStep(T value, T step)
+T RoundStep(T value, T step)
 {
     return step * glm::round(value / step);
 }
@@ -67,15 +67,15 @@ public:
 
     explicit NoRepeatableRandoms(size_t capacity, T min, T max) : capacity_(capacity), min_(min), max_(max)
     {
-        initValues();
+        InitValues();
     }
 
-    bool empty() const { return values_.empty(); }
+    bool Empty() const { return values_.empty(); }
 
-    T pull()
+    T Pull()
     {
         if (values_.empty())
-            initValues();
+            InitValues();
 
         auto it = values_.begin();
         auto number = *it;
@@ -83,22 +83,22 @@ public:
         return number;
     }
 
-    T pullOrThrow()
+    T PullOrThrow()
     {
         if (values_.empty())
             throw std::runtime_error("NoRepeatableRandoms::pullOrThrow() - no more numbers");
 
-        return pull();
+        return Pull();
     }
 
-    void sort()
+    void Sort()
     {
         std::vector<T> sortedValues(values_.begin(), values_.end());
         std::sort(sortedValues.begin(), sortedValues.end());
         values_ = std::unordered_set<T>(sortedValues.begin(), sortedValues.end());
     }
 private:
-    void initValues()
+    void InitValues()
     {
         while (values_.size() != capacity_)
             values_.insert(glm::linearRand<T>(min_, max_));

@@ -11,12 +11,12 @@ namespace utils
 class Config
 {
 public:
-    static void initInstanceFromString(std::string& jsonSourceAsString);
-    static void initInstanceFromFile(std::filesystem::path& jsonFilePath);
-    static nlohmann::json& getInstance();
+    static void InitInstanceFromString(std::string& jsonSourceAsString);
+    static void InitInstanceFromFile(std::filesystem::path& jsonFilePath);
+    static nlohmann::json& GetInstance();
     // Save changes to the same file from which the data was loaded.
     // Throws exception if data was not loaded from file.
-    static void save();
+    static void Save();
 };
 
 namespace details_
@@ -31,7 +31,7 @@ struct StringLiteral
 };
 
 template <StringLiteral Lit>
-std::string_view toStringView()
+std::string_view ToStringView()
 {
     return {Lit.value};
 }
@@ -40,9 +40,9 @@ std::string_view toStringView()
 // Read any built-it type from Json. Return optional. Key = "a.b.c"
 // Do not throw exception if key not found.
 template <typename T, details_::StringLiteral Key>
-std::optional<T>& getConfigOpt()
+std::optional<T>& GetConfigOpt()
 {
-    static std::optional<T> result = getElementByPath(Config::getInstance(), details_::toStringView<Key>());
+    static std::optional<T> result = GetElementByPath(Config::GetInstance(), details_::ToStringView<Key>());
     return result;
 }
 
@@ -50,7 +50,7 @@ std::optional<T>& getConfigOpt()
 template <typename T, details_::StringLiteral Key>
 const T& getConfig()
 {
-    static T& result = getConfigOpt<T, Key>().value();
+    static T& result = GetConfigOpt<T, Key>().value();
     return result;
 }
 
@@ -58,9 +58,9 @@ namespace details_
 {
 template <typename T, StringLiteral Key>
     requires requires(T key) { adl_serializer::from_json(std::declval<nlohmann::basic_json<>&>(), key); }
-T getComplexDataViaJsonSerialization()
+T GetComplexDataViaJsonSerialization()
 {
-    nlohmann::json elementJson = getConfigOpt<nlohmann::json, Key>().value();
+    nlohmann::json elementJson = GetConfigOpt<nlohmann::json, Key>().value();
     T result;
     adl_serializer::from_json(elementJson, result);
     return result;
@@ -70,17 +70,17 @@ T getComplexDataViaJsonSerialization()
 // Read json serializable type from Json. Throw exception if key not found. Key = "a.b.c"
 template <typename T, details_::StringLiteral Key>
     requires requires(T key) { adl_serializer::from_json(std::declval<nlohmann::json&>(), key); }
-const T& getConfig()
+const T& GetConfig()
 {
-    static T value = details_::getComplexDataViaJsonSerialization<T, Key>();
+    static T value = details_::GetComplexDataViaJsonSerialization<T, Key>();
     return value;
 }
 
 // Read any type from Json with default value. Key = "a.b.c".
 template <typename T, details_::StringLiteral Key, auto DefaultValue>
-const T& getConfig()
+const T& GetConfig()
 {
-    static T value = getConfigOpt<T, Key>().value_or(DefaultValue);
+    static T value = GetConfigOpt<T, Key>().value_or(DefaultValue);
     return value;
 }
 

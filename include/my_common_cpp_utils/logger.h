@@ -1,5 +1,4 @@
 #pragma once
-#include <cmath>
 #include <memory>
 #include <my_common_cpp_utils/json_formatter.h>
 #include <spdlog/sinks/daily_file_sink.h>
@@ -12,16 +11,16 @@ namespace utils
 class Logger
 {
 private:
-    inline static std::shared_ptr<spdlog::logger>& getSingletoneInstance()
+    inline static std::shared_ptr<spdlog::logger>& GetSingletoneInstance()
     {
         static std::shared_ptr<spdlog::logger> logger;
         return logger;
     }
 public:
-    inline static void init(
+    inline static void Init(
         const std::filesystem::path& logFilePath, spdlog::level::level_enum level = spdlog::level::level_enum::info)
     {
-        auto& logger = getSingletoneInstance();
+        auto& logger = GetSingletoneInstance();
 
         if (logger)
             throw std::runtime_error("Logger is already initialized");
@@ -33,9 +32,9 @@ public:
         logger->set_level(level);
     }
 
-    inline static spdlog::logger& getInstance()
+    inline static spdlog::logger& GetInstance()
     {
-        auto& logger = getSingletoneInstance();
+        auto& logger = GetSingletoneInstance();
         if (!logger)
             throw std::runtime_error("Logger is not initialized. Use Logger::init()");
 
@@ -45,10 +44,10 @@ public:
 
 } // namespace utils
 
-#define MY_LOG(severity, message) utils::Logger::getInstance().severity(message)
+#define MY_LOG(severity, message) utils::Logger::GetInstance().severity(message)
 
 #define MY_LOG_FMT(severity, fmt_string, ...) \
-    utils::Logger::getInstance().severity(fmt::format(fmt_string, __VA_ARGS__))
+    utils::Logger::GetInstance().severity(fmt::format(fmt_string, __VA_ARGS__))
 
 #define MY_LOG_VAR(severity, var) MY_LOG_FMT(severity, "{} = {}", #var, (var))
 
