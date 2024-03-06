@@ -1,7 +1,7 @@
 #include <glm/glm.hpp>
 #include <gtest/gtest.h>
-#include <my_common_cpp_utils/Config.h>
-#include <my_common_cpp_utils/Logger.h>
+#include <my_common_cpp_utils/config.h>
+#include <my_common_cpp_utils/logger.h>
 
 namespace utils
 {

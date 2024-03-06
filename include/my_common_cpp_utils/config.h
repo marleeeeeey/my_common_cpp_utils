@@ -1,25 +1,22 @@
 #pragma once
-#include "JsonFormatter.h"
-#include "JsonLoader.h"
 #include <magic_enum.hpp>
-#include <memory>
+#include <my_common_cpp_utils/json_formatter.h>
+#include <my_common_cpp_utils/json_utils.h>
 #include <nlohmann/json.hpp>
 
 namespace utils
 {
 
-// TODO: check incorrect usage of config parameters on application start
+// Singleton class to store and access JSON data.
 class Config
 {
 public:
-    enum class Mode
-    {
-        NoReload,
-        ForceReload
-    };
-
-    // jsonSourceAsString - optional json string to load instead of file. Mostly for tests.
-    static std::shared_ptr<JsonLoader>& getInstance(Mode mode, std::string_view jsonSourceAsString = {});
+    static void initInstanceFromString(std::string& jsonSourceAsString);
+    static void initInstanceFromFile(std::filesystem::path& jsonFilePath);
+    static nlohmann::json& getInstance();
+    // Save changes to the same file from which the data was loaded.
+    // Throws exception if data was not loaded from file.
+    static void save();
 };
 
 namespace details_
@@ -45,8 +42,7 @@ std::string_view toStringView()
 template <typename T, details_::StringLiteral Key>
 std::optional<T>& getConfigOpt()
 {
-    static std::optional<T> result =
-        getElementByPath(Config::getInstance(Config::Mode::NoReload)->root(), details_::toStringView<Key>());
+    static std::optional<T> result = getElementByPath(Config::getInstance(), details_::toStringView<Key>());
     return result;
 }
 
@@ -64,7 +60,7 @@ template <typename T, StringLiteral Key>
     requires requires(T key) { adl_serializer::from_json(std::declval<nlohmann::basic_json<>&>(), key); }
 T getComplexDataViaJsonSerialization()
 {
-    json elementJson = getConfigOpt<json, Key>().value();
+    nlohmann::json elementJson = getConfigOpt<nlohmann::json, Key>().value();
     T result;
     adl_serializer::from_json(elementJson, result);
     return result;
@@ -73,7 +69,7 @@ T getComplexDataViaJsonSerialization()
 
 // Read json serializable type from Json. Throw exception if key not found. Key = "a.b.c"
 template <typename T, details_::StringLiteral Key>
-    requires requires(T key) { adl_serializer::from_json(std::declval<json&>(), key); }
+    requires requires(T key) { adl_serializer::from_json(std::declval<nlohmann::json&>(), key); }
 const T& getConfig()
 {
     static T value = details_::getComplexDataViaJsonSerialization<T, Key>();

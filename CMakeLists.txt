@@ -4,13 +4,15 @@ project(my_common_cpp_utils)
 
 add_library(my_common_cpp_utils
     STATIC
-    src/Config.cpp
-    src/JsonLoader.cpp
+    src/config.cpp
+    src/json_loader.cpp
 )
 
 target_include_directories(my_common_cpp_utils
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 # IMPORTANT: Setup dependencies

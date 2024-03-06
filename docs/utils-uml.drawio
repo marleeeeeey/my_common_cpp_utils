@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="aS4h2zil9dQ8FXHDszH4-2" value="The only thing client should implement&lt;br&gt;see examples in file:&lt;br&gt;utils\include\utils\JsonFormatter.h" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;strokeColor=#36393d;" vertex="1" parent="1">
+        <mxCell id="aS4h2zil9dQ8FXHDszH4-2" value="The only thing client should implement&lt;br&gt;see examples in file:&lt;br&gt;utils\include\utils\json_formatter.h" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;strokeColor=#36393d;" vertex="1" parent="1">
           <mxGeometry x="450" y="420" width="250" height="280" as="geometry" />
         </mxCell>
         <mxCell id="aS4h2zil9dQ8FXHDszH4-3" value="&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;template &amp;lt;&amp;gt;&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;struct fmt::formatter&amp;lt;nlohmann::json&amp;gt;&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aS4h2zil9dQ8FXHDszH4-6" target="aS4h2zil9dQ8FXHDszH4-9">

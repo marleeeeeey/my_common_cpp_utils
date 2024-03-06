@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <glm/glm.hpp>
 #include <glm/gtc/random.hpp>
+#include <stdexcept>
 #include <unordered_set>
 
 namespace utils
@@ -85,7 +86,7 @@ public:
     T pullOrThrow()
     {
         if (values_.empty())
-            throw std::logic_error("NoRepeatableRandoms::pullOrThrow() - no more numbers");
+            throw std::runtime_error("NoRepeatableRandoms::pullOrThrow() - no more numbers");
 
         return pull();
     }
