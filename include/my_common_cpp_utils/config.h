@@ -11,8 +11,8 @@ namespace utils
 class Config
 {
 public:
-    static void InitInstanceFromString(std::string& jsonSourceAsString);
-    static void InitInstanceFromFile(std::filesystem::path& jsonFilePath);
+    static void InitInstanceFromString(const std::string& jsonSourceAsString);
+    static void InitInstanceFromFile(const std::filesystem::path& jsonFilePath);
     static nlohmann::json& GetInstance();
     // Save changes to the same file from which the data was loaded.
     // Throws exception if data was not loaded from file.
@@ -48,7 +48,7 @@ std::optional<T>& GetConfigOpt()
 
 // Read any built-it type from Json. Throw exception if key not found. Key = "a.b.c"
 template <typename T, details_::StringLiteral Key>
-const T& getConfig()
+const T& GetConfig()
 {
     static T& result = GetConfigOpt<T, Key>().value();
     return result;

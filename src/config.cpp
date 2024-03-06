@@ -14,12 +14,12 @@ JsonLoader& GetSingletoneInstance()
 }
 } // namespace
 
-void Config::InitInstanceFromString(std::string& jsonSourceAsString)
+void Config::InitInstanceFromString(const std::string& jsonSourceAsString)
 {
     GetSingletoneInstance().LoadFromString(jsonSourceAsString);
 };
 
-void Config::InitInstanceFromFile(std::filesystem::path& jsonFilePath)
+void Config::InitInstanceFromFile(const std::filesystem::path& jsonFilePath)
 {
     GetSingletoneInstance().LoadFromFile(jsonFilePath);
 };
