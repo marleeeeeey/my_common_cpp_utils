@@ -30,6 +30,13 @@ public:
         sinks.push_back(std::make_shared<spdlog::sinks::daily_file_sink_mt>(logFilePath.string(), 23, 59));
         logger = std::make_shared<spdlog::logger>("global", begin(sinks), end(sinks));
         logger->set_level(level);
+
+        // Set the pattern
+        // [%Y-%m-%d %H:%M:%S.%e] is the timestamp
+        // [%l] is the log level
+        // [%t] is the thread ID
+        // %v is the actual log message
+        logger->set_pattern("[%H:%M:%S.%e] [%l] [%t] %v");
     }
 
     inline static spdlog::logger& GetInstance()
