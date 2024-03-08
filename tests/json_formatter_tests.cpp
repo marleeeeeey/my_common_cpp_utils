@@ -31,7 +31,7 @@ struct GameState
 
     NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameState, quit);
 
-    // TODO Doesn't work with custom defined `to_json / from_json` in adl_serializer
+    // TODO5 Doesn't work with custom defined `to_json / from_json` in adl_serializer
     // see definition of:
     // static void to_json( nlohmann::json& j, const glm::vec<2, T>& data )
     // NLOHMANN_DEFINE_TYPE_INTRUSIVE( GameState, quit, windowSize );
