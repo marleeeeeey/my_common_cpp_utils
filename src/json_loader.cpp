@@ -1,5 +1,6 @@
 #include "json_loader.h"
 #include <fstream>
+#include <my_common_cpp_utils/json_utils.h>
 #include <my_common_cpp_utils/logger.h>
 #include <stdexcept>
 
@@ -11,33 +12,8 @@ void JsonLoader::LoadFromFile(const std::filesystem::path& jsonFilePath)
     if (isLoaded_)
         throw std::runtime_error("JSON data is already loaded. Use saveToSameFile() to save changes");
 
-    std::ifstream inputFile(jsonFilePath);
-    if (!inputFile.is_open())
-        throw std::logic_error(MY_FMT("Error opening file for reading: {}", jsonFilePath.string()));
-
-    try
-    {
-        std::stringstream buffer;
-        std::string line;
-        while (std::getline(inputFile, line))
-        {
-            // Remove one-line comments
-            std::size_t commentPos = line.find("//");
-            if (commentPos != std::string::npos)
-            {
-                line.erase(commentPos);
-            }
-            buffer << line << "\n";
-        }
-
-        root_ = nlohmann::json::parse(buffer);
-        isLoaded_ = true;
-    }
-    catch (const std::exception& e)
-    {
-        throw std::logic_error(
-            MY_FMT("Error loading JSON from file. File: {}. Error: {}", jsonFilePath.string(), e.what()));
-    }
+    root_ = utils::LoadJsonFromFile(jsonFilePath);
+    isLoaded_ = true;
 }
 
 void JsonLoader::SaveToSameFile() const
