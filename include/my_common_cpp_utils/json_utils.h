@@ -27,7 +27,14 @@ inline std::optional<nlohmann::json> GetElementByPath(const nlohmann::json& json
     return currentNode;
 }
 
-inline nlohmann::json LoadJsonFromFile(const std::filesystem::path& jsonFilePath)
+enum class JsonLoadOpions
+{
+    None,
+    RemoveComments,
+};
+
+inline nlohmann::json LoadJsonFromFile(
+    const std::filesystem::path& jsonFilePath, JsonLoadOpions options = JsonLoadOpions::None)
 {
     std::ifstream inputFile(jsonFilePath);
     if (!inputFile.is_open())
@@ -35,19 +42,31 @@ inline nlohmann::json LoadJsonFromFile(const std::filesystem::path& jsonFilePath
 
     try
     {
+        if (options == JsonLoadOpions::None)
+        {
+            std::stringstream buffer;
+            buffer << inputFile.rdbuf();
+            return nlohmann::json::parse(buffer);
+        }
+
+        // This type of loading may produce errors like this:
+        // Error: [json.exception.parse_error.101] parse error at line 69, column 0: syntax error while parsing value -
+        // invalid string: control character U+000A (LF) must be escaped to \u000A or \n; last read: '"https:<U+000A>'
         std::stringstream buffer;
         std::string line;
         while (std::getline(inputFile, line))
         {
-            // Remove one-line comments
-            std::size_t commentPos = line.find("//");
-            if (commentPos != std::string::npos)
+            if (options == JsonLoadOpions::RemoveComments)
             {
-                line.erase(commentPos);
+                // Remove one-line comments
+                std::size_t commentPos = line.find("//");
+                if (commentPos != std::string::npos)
+                {
+                    line.erase(commentPos);
+                }
             }
             buffer << line << "\n";
         }
-
         return nlohmann::json::parse(buffer);
     }
     catch (const std::exception& e)

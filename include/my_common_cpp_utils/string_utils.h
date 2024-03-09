@@ -74,4 +74,18 @@ inline std::string TrimCopy(std::string s)
     return s;
 }
 
+inline std::string JoinStrings(const std::vector<std::string>& strings, const std::string& separator)
+{
+    std::string result;
+    for (size_t i = 0; i < strings.size(); ++i)
+    {
+        if (i > 0)
+        {
+            result += separator;
+        }
+        result += strings[i];
+    }
+    return result;
+}
+
 } // namespace utils
