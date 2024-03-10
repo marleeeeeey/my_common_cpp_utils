@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <glm/ext/scalar_constants.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/random.hpp>
 #include <stdexcept>
@@ -31,6 +32,18 @@ template <typename T>
 T Sign(T val)
 {
     return (T(0) < val) - (val < T(0));
+}
+
+inline glm::vec2 GetRandomCoordinateAround(const glm::vec2& center, float radius)
+{
+    float angle = Random<float>(0, 2 * glm::pi<float>());
+    float distance = Random<float>(0, radius);
+
+    glm::vec2 randomPoint;
+    randomPoint.x = center.x + distance * cos(angle);
+    randomPoint.y = center.y + distance * sin(angle);
+
+    return randomPoint;
 }
 
 #ifdef SFML_AVAILABLE
