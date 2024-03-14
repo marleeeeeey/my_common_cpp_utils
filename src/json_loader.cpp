@@ -12,7 +12,7 @@ void JsonLoader::LoadFromFile(const std::filesystem::path& jsonFilePath)
     if (isLoaded_)
         throw std::runtime_error("JSON data is already loaded. Use saveToSameFile() to save changes");
 
-    root_ = utils::LoadJsonFromFile(jsonFilePath);
+    root_ = utils::LoadJsonFromFile(jsonFilePath, JsonLoadOpions::RemoveComments);
     isLoaded_ = true;
 }
 
@@ -32,8 +32,6 @@ void JsonLoader::SaveToFile(const std::string& filename) const
 
     output_file << root_.dump(2);
     output_file.close();
-
-    MY_LOG_FMT(info, "JSON data has been written to {}", filename);
 }
 
 void JsonLoader::LoadFromString(const std::string& jsonString)
