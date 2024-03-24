@@ -88,4 +88,24 @@ inline std::string JoinStrings(const std::vector<std::string>& strings, const st
     return result;
 }
 
+template <typename T>
+    requires requires(T a) {
+        a.begin();
+        a.end();
+        ToString(*a.begin());
+    }
+std::string JoinStrings(const T& container, const std::string& separator = ", ")
+{
+    std::string result;
+    for (auto it = container.begin(); it != container.end(); ++it)
+    {
+        if (it != container.begin())
+        {
+            result += separator;
+        }
+        result += ToString(*it);
+    }
+    return result;
+}
+
 } // namespace utils
