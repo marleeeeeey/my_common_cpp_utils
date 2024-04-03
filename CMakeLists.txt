@@ -20,7 +20,7 @@ find_package(glm CONFIG REQUIRED)
 # #################### Build library itself #########################
 # ###################################################################
 file(GLOB_RECURSE MY_CPP_UTILS_SOURCES "./src/*.cpp")
-add_library(my_cpp_utils SHARED ${MY_CPP_UTILS_SOURCES})
+add_library(my_cpp_utils STATIC ${MY_CPP_UTILS_SOURCES})
 
 target_include_directories(my_cpp_utils
     PUBLIC
