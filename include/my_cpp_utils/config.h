@@ -1,7 +1,7 @@
 #pragma once
 #include <magic_enum.hpp>
-#include <my_common_cpp_utils/json_formatter.h>
-#include <my_common_cpp_utils/json_utils.h>
+#include <my_cpp_utils/json_formatter.h>
+#include <my_cpp_utils/json_utils.h>
 #include <nlohmann/json.hpp>
 
 namespace utils

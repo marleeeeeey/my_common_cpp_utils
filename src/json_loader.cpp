@@ -1,7 +1,7 @@
 #include "json_loader.h"
 #include <fstream>
-#include <my_common_cpp_utils/json_utils.h>
-#include <my_common_cpp_utils/logger.h>
+#include <my_cpp_utils/json_utils.h>
+#include <my_cpp_utils/logger.h>
 #include <stdexcept>
 
 namespace utils

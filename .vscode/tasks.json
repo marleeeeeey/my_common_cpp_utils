@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "(Windows) 0. Clean console",
+      "type": "shell",
+      "command": "cls",
+    },
+    {
+      "label": "(Windows) 1. Configure",
+      "type": "shell",
+      "command": "cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake -G \"Ninja\" -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+      "dependsOn": [
+        "(Windows) 0. Clean console"
+      ]
+    },
+    {
+      "label": "(Windows) 2. Build",
+      "type": "shell",
+      "command": "cmake --build ${workspaceFolder}/build -- -k 0", // stop on first error
+      // "command": "cmake --build ${workspaceFolder}/build", // continue on error
+      "dependsOn": [
+        "(Windows) 1. Configure"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-# my_common_cpp_utils
+# my_cpp_utils
 
-`my_common_cpp_utils` stands for  `MarleeeeeeY Common C++ Utilities`.
+`my_cpp_utils` stands for  `MarleeeeeeY Common C++ Utilities`.
 
 Here are some common C++ utilities that I frequently use in my projects. They include functions for working with:
 - JSON configuration files,

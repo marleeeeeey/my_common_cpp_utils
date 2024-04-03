@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "my-cpp-utils-vcpkg-json",
+  "version-string": "1.0",
+  "description": "Use vcpkg to declare dependencies and fetch them automatically.",
+  "dependencies": [
+    "magic-enum",
+    "nlohmann-json",
+    "glm",
+    "spdlog"
+  ]
+}
