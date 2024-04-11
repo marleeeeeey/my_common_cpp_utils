@@ -54,7 +54,7 @@ public:
 #define MY_LOG(severity, message) utils::Logger::GetInstance().severity(message)
 
 #define MY_LOG_FMT(severity, fmt_string, ...) \
-    utils::Logger::GetInstance().severity(fmt::format(fmt_string, __VA_ARGS__))
+    utils::Logger::GetInstance().severity(fmt::format(fmt_string __VA_OPT__(, ) __VA_ARGS__))
 
 #define MY_LOG_VAR(severity, var) MY_LOG_FMT(severity, "{} = {}", #var, (var))
 
