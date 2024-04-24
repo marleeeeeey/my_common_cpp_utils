@@ -24,7 +24,7 @@ inline bool RandomTrue(float probabilityOfTrue = 0.5f)
 template <typename T>
 T Random(T min, T max)
 {
-    return glm::linearRand(min, max);
+    return static_cast<T>(glm::linearRand((float)min, (float)max));
 }
 
 // Returns 1 if val > 0, -1 if val < 0, and 0 if val == 0.
