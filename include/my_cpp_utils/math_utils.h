@@ -3,6 +3,7 @@
 #include <glm/ext/scalar_constants.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/random.hpp>
+#include <optional>
 #include <stdexcept>
 #include <unordered_set>
 
@@ -25,6 +26,16 @@ template <typename T>
 T Random(T min, T max)
 {
     return static_cast<T>(glm::linearRand((float)min, (float)max));
+}
+
+// Get random number from T with method size(). Return optional<size_t> if size() == 0.
+template <typename T>
+std::optional<size_t> RandomIndexOpt(const T& container)
+{
+    if (container.empty())
+        return std::nullopt;
+
+    return Random<size_t>(0, container.size() - 1);
 }
 
 // Returns 1 if val > 0, -1 if val < 0, and 0 if val == 0.
